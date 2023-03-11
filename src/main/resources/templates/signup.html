@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to my site</title>
+</head>
+<body>
+  <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <div class="my-card mt-1">
+
+              <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                <p th:text="${session.message.content}"></p>
+              </div>
+              <h1 class="text-center">Register Here !!</h1>
+
+              <form th:action="@{/do_register}" method="post" th:object="${user}">
+                <!-- name field-->
+
+                <div class="mb-3">
+                  <label for="name_field" class="form-label">Your Name</label>
+                  <input type="text" class="form-control" id="name_field" aria-describedby="nameHelp" placeholder="Enter here"
+                  required name="name">
+
+                </div>
+
+                <!-- email field-->
+
+                <div class="mb-3">
+                  <label for="email_field" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email_field" aria-describedby="emailHelp" placeholder="Email Address"
+                         required name="email">
+
+                </div>
+
+                <!-- password field-->
+
+                <div class="mb-3">
+                  <label for="password_field" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="password_field" aria-describedby="passHelp" placeholder="Password"
+                         required name="password">
+
+                </div>
+
+                <!-- User about field-->
+                <div class="form-group">
+
+                  <textarea placeholder="Enter something yourself" rows="6" class="form-control" name="about"></textarea>
+
+                </div>
+
+                <!--terms and conditions checkbox-->
+                <div class="form-group form-check text-center">
+                    <input type="checkbox"
+                    name="agreement"
+                    class="form-check-input"
+                    id="agreement"/>
+
+                  <label for="agreement">Accept terms and condtions</label>
+                </div>
+
+                <div class="container text-center">
+                  <Button type="submit" class="btn bg-primary text-white">
+                    Submit
+                  </Button>
+
+                  <Button type="reset" class="btn bg-primary text-white">
+                    Reset
+                  </Button>
+
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+</body>
+</html>
